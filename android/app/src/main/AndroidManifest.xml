@@ -1,8 +1,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cloud_functions_app_sample">
+<!-- Android で URL を開くのに必要な記述
+参考：https://pub.dev/packages/url_launcher
+-->
+<queries>
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="https" />
+  </intent>
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="http" />
+  </intent>
+</queries>
+  <!-- android:label には "@string/app_name" を指定することで、
+  build.gradle で設定した環境ごとのアプリ名を使用するようにする -->
    <application
-        android:label="cloud_functions_app_sample"
+        android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher">
+        <!-- Firebase Messaging の設定：ここから -->
+        <!-- https://firebase.flutter.dev/docs/messaging/notifications/#android-configuration -->
+        <meta-data
+          android:name="com.google.firebase.messaging.default_notification_channel_id"
+          android:value="high_importance_channel" />
+        <meta-data
+          android:name="com.google.firebase.messaging.default_notification_icon"
+          android:resource="@drawable/transparent_notification_icon"
+        />
+        <!-- Firebase Messaging の設定：ここまで -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +62,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- image_cropper: https://pub.dev/packages/image_cropper -->
+        <activity
+          android:name="com.yalantis.ucrop.UCropActivity"
+          android:screenOrientation="portrait"
+          android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

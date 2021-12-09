@@ -1,4 +1,4 @@
-package com.example.cloud_functions_app_sample
+package com.kosukesaigusa.cloud_functions_app_sample
 
 import io.flutter.embedding.android.FlutterActivity
 

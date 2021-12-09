@@ -1,0 +1,36 @@
+{
+  "collection /users": {
+    "document {userId}": {
+      "createdAt": "2021-06-25T00:00:00",
+      "updatedAt": "2021-06-25T00:00:00",
+      "name": "大谷翔平",
+      "imageURL": "https://..."
+    }
+  },
+  "collection /chatRooms": {
+    "document {chatRoomId}": {
+      "createdAt": "2021-06-25T00:00:00",
+      "updatedAt": "2021-06-25T00:00:00",
+      "name": "雑談部屋",
+      "imageURL": "https://..."
+    },
+    "collection /messages": {
+      "document {messageId}": {
+        "sentAt": "2021-06-25T00:00:00",
+        "isDeleted": false,
+        "senderRef": "/users/{userId}",
+        "content": "こんにちは！",
+        "imageURLs": ["https://...", "https://...", "https://..."]
+      }
+    }
+  },
+  "collection /attendingChatRooms": {
+    "document {attendingChatRoomId}": {
+      "createdAt": "2021-06-25T00:00:00",
+      "updatedAt": "2021-06-25T00:00:00",
+      "lastMessage": "こんにちは！",
+      "roomName": "雑談部屋",
+      "mute": false
+    }
+  }
+}

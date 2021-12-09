@@ -76,7 +76,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.cloud_functions_app_sample"
+        applicationId "com.kosukesaigusa.cloud_functions_app_sample"
         minSdkVersion 19
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()

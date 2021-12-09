@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cloud_functions_app_sample">
+    package="com.kosukesaigusa.cloud_functions_app_sample">
 <!-- Android で URL を開くのに必要な記述
 参考：https://pub.dev/packages/url_launcher
 -->

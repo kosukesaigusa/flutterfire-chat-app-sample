@@ -1,15 +1,12 @@
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:cloud_functions_app_sample/models/chat_room/chat_room.dart';
 import 'package:cloud_functions_app_sample/pages/chat_room/input_widget.dart';
+import 'package:cloud_functions_app_sample/pages/chat_room/message.dart';
 import 'package:cloud_functions_app_sample/routes/route.dart';
-import 'package:cloud_functions_app_sample/theme/theme.dart';
-import 'package:cloud_functions_app_sample/utils/datetime.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/error_text_widget.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/not_found_widget.dart';
-import 'package:cloud_functions_app_sample/widgets/image_widget/cached_network_image.dart';
 import 'package:cloud_functions_app_sample/widgets/loading_widget/spinkit_circle.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class ChatRoomPageArguments {
   ChatRoomPageArguments(this.chatRoomRef);
@@ -69,41 +66,7 @@ class ChatRoomPage extends StatelessWidget {
                           itemCount: querySnapshot.docs.length,
                           itemBuilder: (context, index) {
                             final message = querySnapshot.docs[index].data;
-                            return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const CircleCachedNetworkImage(
-                                  radius: 36,
-                                  imageURL: '',
-                                ),
-                                const Gap(16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Flexible(
-                                              child: Text(
-                                            '大谷翔平',
-                                            style: bold16,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          )),
-                                          const Gap(16),
-                                          Text(
-                                            dateTimeString(datetime: message.createdAt),
-                                            style: regular12,
-                                          ),
-                                          const Gap(48),
-                                        ],
-                                      ),
-                                      Text(message.content),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            );
+                            return MessageWidget(message);
                           },
                         ),
                       ),

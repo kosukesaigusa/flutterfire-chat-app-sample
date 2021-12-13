@@ -81,7 +81,6 @@ class ChatRoomListPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const Gap(4),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -94,7 +93,7 @@ class ChatRoomListPage extends StatelessWidget {
                                   ),
                                 ),
                                 const Gap(48),
-                                attendingChatRoom.unreadCount > 0
+                                (attendingChatRoom.unreadCount ?? 0) > 0
                                     ? Container(
                                         height: 24,
                                         padding: const EdgeInsets.symmetric(
@@ -107,7 +106,7 @@ class ChatRoomListPage extends StatelessWidget {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            attendingChatRoom.unreadCount < 100
+                                            (attendingChatRoom.unreadCount ?? 0) < 100
                                                 ? '${attendingChatRoom.unreadCount}'
                                                 : '99+',
                                             style: white10,

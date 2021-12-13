@@ -122,6 +122,7 @@ abstract class ChatRoomDocumentReference
   Future<void> update({
     String name,
     String? imageURL,
+    int? usersCount,
   });
 
   Future<void> set(ChatRoom value);
@@ -172,10 +173,12 @@ class _$ChatRoomDocumentReference
   Future<void> update({
     Object? name = _sentinel,
     Object? imageURL = _sentinel,
+    Object? usersCount = _sentinel,
   }) async {
     final json = {
       if (name != _sentinel) "name": name as String,
       if (imageURL != _sentinel) "imageURL": imageURL as String?,
+      if (usersCount != _sentinel) "usersCount": usersCount as int?,
     };
 
     return reference.update(json);
@@ -246,6 +249,17 @@ abstract class ChatRoomQuery implements QueryReference<ChatRoomQuerySnapshot> {
     List<String?>? whereIn,
     List<String?>? whereNotIn,
   });
+  ChatRoomQuery whereUsersCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
+  });
 
   ChatRoomQuery orderByName({
     bool descending = false,
@@ -265,6 +279,18 @@ abstract class ChatRoomQuery implements QueryReference<ChatRoomQuerySnapshot> {
     String? startAfter,
     String? endAt,
     String? endBefore,
+    ChatRoomDocumentSnapshot? startAtDocument,
+    ChatRoomDocumentSnapshot? endAtDocument,
+    ChatRoomDocumentSnapshot? endBeforeDocument,
+    ChatRoomDocumentSnapshot? startAfterDocument,
+  });
+
+  ChatRoomQuery orderByUsersCount({
+    bool descending = false,
+    int? startAt,
+    int? startAfter,
+    int? endAt,
+    int? endBefore,
     ChatRoomDocumentSnapshot? startAtDocument,
     ChatRoomDocumentSnapshot? endAtDocument,
     ChatRoomDocumentSnapshot? endBeforeDocument,
@@ -389,6 +415,34 @@ class _$ChatRoomQuery extends QueryReference<ChatRoomQuerySnapshot>
     );
   }
 
+  ChatRoomQuery whereUsersCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
+  }) {
+    return _$ChatRoomQuery(
+      reference.where(
+        'usersCount',
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      _collection,
+    );
+  }
+
   ChatRoomQuery orderByName({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -443,6 +497,48 @@ class _$ChatRoomQuery extends QueryReference<ChatRoomQuerySnapshot>
     ChatRoomDocumentSnapshot? startAfterDocument,
   }) {
     var query = reference.orderBy('imageURL', descending: false);
+
+    if (startAtDocument != null) {
+      query = query.startAtDocument(startAtDocument.snapshot);
+    }
+    if (startAfterDocument != null) {
+      query = query.startAfterDocument(startAfterDocument.snapshot);
+    }
+    if (endAtDocument != null) {
+      query = query.endAtDocument(endAtDocument.snapshot);
+    }
+    if (endBeforeDocument != null) {
+      query = query.endBeforeDocument(endBeforeDocument.snapshot);
+    }
+
+    if (startAt != _sentinel) {
+      query = query.startAt([startAt]);
+    }
+    if (startAfter != _sentinel) {
+      query = query.startAfter([startAfter]);
+    }
+    if (endAt != _sentinel) {
+      query = query.endAt([endAt]);
+    }
+    if (endBefore != _sentinel) {
+      query = query.endBefore([endBefore]);
+    }
+
+    return _$ChatRoomQuery(query, _collection);
+  }
+
+  ChatRoomQuery orderByUsersCount({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    ChatRoomDocumentSnapshot? startAtDocument,
+    ChatRoomDocumentSnapshot? endAtDocument,
+    ChatRoomDocumentSnapshot? endBeforeDocument,
+    ChatRoomDocumentSnapshot? startAfterDocument,
+  }) {
+    var query = reference.orderBy('usersCount', descending: false);
 
     if (startAtDocument != null) {
       query = query.startAtDocument(startAtDocument.snapshot);
@@ -631,7 +727,7 @@ abstract class MessageDocumentReference
   Future<void> delete();
 
   Future<void> update({
-    bool isDeleted,
+    bool? isDeleted,
     String content,
   });
 
@@ -686,7 +782,7 @@ class _$MessageDocumentReference
     Object? content = _sentinel,
   }) async {
     final json = {
-      if (isDeleted != _sentinel) "isDeleted": isDeleted as bool,
+      if (isDeleted != _sentinel) "isDeleted": isDeleted as bool?,
       if (content != _sentinel) "content": content as String,
     };
 
@@ -744,8 +840,8 @@ abstract class MessageQuery implements QueryReference<MessageQuerySnapshot> {
     bool? isGreaterThan,
     bool? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<bool>? whereIn,
-    List<bool>? whereNotIn,
+    List<bool?>? whereIn,
+    List<bool?>? whereNotIn,
   });
   MessageQuery whereContent({
     String? isEqualTo,
@@ -761,10 +857,10 @@ abstract class MessageQuery implements QueryReference<MessageQuerySnapshot> {
 
   MessageQuery orderByIsDeleted({
     bool descending = false,
-    bool startAt,
-    bool startAfter,
-    bool endAt,
-    bool endBefore,
+    bool? startAt,
+    bool? startAfter,
+    bool? endAt,
+    bool? endBefore,
     MessageDocumentSnapshot? startAtDocument,
     MessageDocumentSnapshot? endAtDocument,
     MessageDocumentSnapshot? endBeforeDocument,
@@ -853,8 +949,8 @@ class _$MessageQuery extends QueryReference<MessageQuerySnapshot>
     bool? isGreaterThan,
     bool? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<bool>? whereIn,
-    List<bool>? whereNotIn,
+    List<bool?>? whereIn,
+    List<bool?>? whereNotIn,
   }) {
     return _$MessageQuery(
       reference.where(
@@ -1038,6 +1134,7 @@ ChatRoom _$ChatRoomFromJson(Map<String, dynamic> json) => ChatRoom(
       updatedAt: const TimestampConverter().fromJson(json['updatedAt']),
       name: json['name'] as String,
       imageURL: json['imageURL'] as String?,
+      usersCount: json['usersCount'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$ChatRoomToJson(ChatRoom instance) => <String, dynamic>{
@@ -1045,6 +1142,7 @@ Map<String, dynamic> _$ChatRoomToJson(ChatRoom instance) => <String, dynamic>{
       'updatedAt': const TimestampConverter().toJson(instance.updatedAt),
       'name': instance.name,
       'imageURL': instance.imageURL,
+      'usersCount': instance.usersCount,
     };
 
 Message _$MessageFromJson(Map<String, dynamic> json) => Message(

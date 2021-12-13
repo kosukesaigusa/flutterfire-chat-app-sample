@@ -23,7 +23,8 @@
       "createdAt": "2021-06-25T00:00:00",
       "updatedAt": "2021-06-25T00:00:00",
       "name": "雑談部屋",
-      "imageURL": "https://..."
+      "imageURL": "https://...",
+      "usersCount": 5
     },
     "collection /messages": {
       "document {messageId}": {

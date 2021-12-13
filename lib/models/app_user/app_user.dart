@@ -5,8 +5,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'app_user.g.dart';
 
-final db = FirebaseFirestore.instance;
-
 @JsonSerializable()
 class AppUser {
   AppUser({
@@ -32,9 +30,9 @@ class AttendingChatRoom {
     required this.lastMessage,
     required this.name,
     this.imageURL,
-    required this.usersCount,
-    required this.mute,
-    required this.unreadCount,
+    this.usersCount,
+    this.mute,
+    this.unreadCount,
   });
 
   @TimestampConverter()
@@ -45,18 +43,15 @@ class AttendingChatRoom {
   final String name;
   final String? imageURL;
   @JsonKey(defaultValue: 0)
-  final int usersCount;
+  final int? usersCount;
   @JsonKey(defaultValue: false)
-  final bool mute;
+  final bool? mute;
   @JsonKey(defaultValue: 0)
-  final int unreadCount;
+  final int? unreadCount;
 }
 
 @Collection<AppUser>('users')
 @Collection<AttendingChatRoom>('users/*/attendingChatRooms', name: 'attendingChatRooms')
 final usersRef = AppUserCollectionReference();
 AttendingChatRoomCollectionReference attendingChatRoomsRef({required String userId}) =>
-    AttendingChatRoomCollectionReference(db.collection('users').doc(userId).withConverter<AppUser>(
-          fromFirestore: AppUserCollectionReference.fromFirestore,
-          toFirestore: AppUserCollectionReference.toFirestore,
-        ));
+    AttendingChatRoomCollectionReference(usersRef.doc(userId).reference);

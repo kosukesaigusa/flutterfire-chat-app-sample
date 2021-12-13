@@ -639,9 +639,9 @@ abstract class AttendingChatRoomDocumentReference
     String lastMessage,
     String name,
     String? imageURL,
-    int usersCount,
-    bool mute,
-    int unreadCount,
+    int? usersCount,
+    bool? mute,
+    int? unreadCount,
   });
 
   Future<void> set(AttendingChatRoom value);
@@ -702,9 +702,9 @@ class _$AttendingChatRoomDocumentReference
       if (lastMessage != _sentinel) "lastMessage": lastMessage as String,
       if (name != _sentinel) "name": name as String,
       if (imageURL != _sentinel) "imageURL": imageURL as String?,
-      if (usersCount != _sentinel) "usersCount": usersCount as int,
-      if (mute != _sentinel) "mute": mute as bool,
-      if (unreadCount != _sentinel) "unreadCount": unreadCount as int,
+      if (usersCount != _sentinel) "usersCount": usersCount as int?,
+      if (mute != _sentinel) "mute": mute as bool?,
+      if (unreadCount != _sentinel) "unreadCount": unreadCount as int?,
     };
 
     return reference.update(json);
@@ -795,8 +795,8 @@ abstract class AttendingChatRoomQuery
     int? isGreaterThan,
     int? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<int>? whereIn,
-    List<int>? whereNotIn,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
   });
   AttendingChatRoomQuery whereMute({
     bool? isEqualTo,
@@ -806,8 +806,8 @@ abstract class AttendingChatRoomQuery
     bool? isGreaterThan,
     bool? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<bool>? whereIn,
-    List<bool>? whereNotIn,
+    List<bool?>? whereIn,
+    List<bool?>? whereNotIn,
   });
   AttendingChatRoomQuery whereUnreadCount({
     int? isEqualTo,
@@ -817,8 +817,8 @@ abstract class AttendingChatRoomQuery
     int? isGreaterThan,
     int? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<int>? whereIn,
-    List<int>? whereNotIn,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
   });
 
   AttendingChatRoomQuery orderByLastMessage({
@@ -859,10 +859,10 @@ abstract class AttendingChatRoomQuery
 
   AttendingChatRoomQuery orderByUsersCount({
     bool descending = false,
-    int startAt,
-    int startAfter,
-    int endAt,
-    int endBefore,
+    int? startAt,
+    int? startAfter,
+    int? endAt,
+    int? endBefore,
     AttendingChatRoomDocumentSnapshot? startAtDocument,
     AttendingChatRoomDocumentSnapshot? endAtDocument,
     AttendingChatRoomDocumentSnapshot? endBeforeDocument,
@@ -871,10 +871,10 @@ abstract class AttendingChatRoomQuery
 
   AttendingChatRoomQuery orderByMute({
     bool descending = false,
-    bool startAt,
-    bool startAfter,
-    bool endAt,
-    bool endBefore,
+    bool? startAt,
+    bool? startAfter,
+    bool? endAt,
+    bool? endBefore,
     AttendingChatRoomDocumentSnapshot? startAtDocument,
     AttendingChatRoomDocumentSnapshot? endAtDocument,
     AttendingChatRoomDocumentSnapshot? endBeforeDocument,
@@ -883,10 +883,10 @@ abstract class AttendingChatRoomQuery
 
   AttendingChatRoomQuery orderByUnreadCount({
     bool descending = false,
-    int startAt,
-    int startAfter,
-    int endAt,
-    int endBefore,
+    int? startAt,
+    int? startAfter,
+    int? endAt,
+    int? endBefore,
     AttendingChatRoomDocumentSnapshot? startAtDocument,
     AttendingChatRoomDocumentSnapshot? endAtDocument,
     AttendingChatRoomDocumentSnapshot? endBeforeDocument,
@@ -1048,8 +1048,8 @@ class _$AttendingChatRoomQuery
     int? isGreaterThan,
     int? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<int>? whereIn,
-    List<int>? whereNotIn,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
   }) {
     return _$AttendingChatRoomQuery(
       reference.where(
@@ -1076,8 +1076,8 @@ class _$AttendingChatRoomQuery
     bool? isGreaterThan,
     bool? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<bool>? whereIn,
-    List<bool>? whereNotIn,
+    List<bool?>? whereIn,
+    List<bool?>? whereNotIn,
   }) {
     return _$AttendingChatRoomQuery(
       reference.where(
@@ -1104,8 +1104,8 @@ class _$AttendingChatRoomQuery
     int? isGreaterThan,
     int? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<int>? whereIn,
-    List<int>? whereNotIn,
+    List<int?>? whereIn,
+    List<int?>? whereNotIn,
   }) {
     return _$AttendingChatRoomQuery(
       reference.where(

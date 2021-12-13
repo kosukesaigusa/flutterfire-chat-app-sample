@@ -5,8 +5,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_room.g.dart';
 
-final db = FirebaseFirestore.instance;
-
 @JsonSerializable()
 class ChatRoom {
   ChatRoom({
@@ -14,6 +12,7 @@ class ChatRoom {
     this.updatedAt,
     required this.name,
     this.imageURL,
+    this.usersCount,
   });
 
   @TimestampConverter()
@@ -22,13 +21,15 @@ class ChatRoom {
   DateTime? updatedAt;
   final String name;
   final String? imageURL;
+  @JsonKey(defaultValue: 0)
+  int? usersCount;
 }
 
 @JsonSerializable()
 class Message {
   Message({
     this.createdAt,
-    required this.isDeleted,
+    this.isDeleted,
     required this.senderRef,
     required this.content,
   });
@@ -36,7 +37,7 @@ class Message {
   @TimestampConverter()
   DateTime? createdAt;
   @JsonKey(defaultValue: false)
-  final bool isDeleted;
+  bool? isDeleted;
   @DocumentReferenceConverter()
   final DocumentReference senderRef;
   final String content;
@@ -46,12 +47,6 @@ class Message {
 @Collection<Message>('chatRooms/*/messages', name: 'messages')
 final chatRoomsRef = ChatRoomCollectionReference();
 ChatRoomDocumentReference chatRoomRef({required String chatRoomId}) =>
-    ChatRoomDocumentReference(db.collection('chatRooms').doc(chatRoomId).withConverter<ChatRoom>(
-          fromFirestore: ChatRoomCollectionReference.fromFirestore,
-          toFirestore: ChatRoomCollectionReference.toFirestore,
-        ));
+    ChatRoomDocumentReference(chatRoomsRef.doc(chatRoomId).reference);
 MessageCollectionReference messagesRef({required String chatRoomId}) =>
-    MessageCollectionReference(db.collection('chatRooms').doc(chatRoomId).withConverter<ChatRoom>(
-          fromFirestore: ChatRoomCollectionReference.fromFirestore,
-          toFirestore: ChatRoomCollectionReference.toFirestore,
-        ));
+    MessageCollectionReference(chatRoomRef(chatRoomId: chatRoomId).reference);

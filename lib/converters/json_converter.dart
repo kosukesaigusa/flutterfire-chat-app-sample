@@ -22,23 +22,21 @@ class DocumentReferenceNullableConverter
   DocumentReference? toJson(DocumentReference? reference) => reference;
 }
 
-class DocumentReferenceListConverter
-    implements JsonConverter<List<DocumentReference>, List<DocumentReference>> {
-  const DocumentReferenceListConverter();
-
-  @override
-  List<DocumentReference> fromJson(List<DocumentReference> refs) => refs;
-
-  @override
-  List<DocumentReference> toJson(List<DocumentReference> refs) => refs;
-}
-
-class TimestampConverter implements JsonConverter<DateTime?, Timestamp?> {
+class TimestampConverter implements JsonConverter<DateTime?, dynamic> {
   const TimestampConverter();
 
   @override
-  DateTime? fromJson(Timestamp? json) => json?.toDate();
+  DateTime? fromJson(dynamic timestamp) {
+    if (timestamp == null) {
+      return null;
+    }
+    if (timestamp is Timestamp) {
+      return timestamp.toDate();
+    }
+    return null;
+  }
 
   @override
-  Timestamp? toJson(DateTime? object) => object == null ? null : Timestamp.fromDate(object);
+  dynamic toJson(DateTime? dateTime) =>
+      dateTime == null ? FieldValue.serverTimestamp() : Timestamp.fromDate(dateTime);
 }

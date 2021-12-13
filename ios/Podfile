@@ -2,7 +2,7 @@
 # platform がサポートすべき値の最小値を
 # ios/Loacal Podspecs > xxx.json から探して設定する
 # 参考：https://stackoverflow.com/questions/52398435/cocoapods-could-not-find-compatible-versions-for-pod-firebase-core-cloud-fir
-platform :ios, '10.0'
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'

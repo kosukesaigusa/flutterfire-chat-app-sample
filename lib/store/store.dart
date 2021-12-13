@@ -15,6 +15,9 @@ class Store extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Firebase Authentication が管理する現在のユーザー
+  /// Firebase Authentication が管理する現在のユーザー
   User? get currentUser => FirebaseAuth.instance.currentUser;
+
+  /// SignInRequiredPage の child で使って良い non-null の uid
+  String get nonNullUid => FirebaseAuth.instance.currentUser!.uid;
 }

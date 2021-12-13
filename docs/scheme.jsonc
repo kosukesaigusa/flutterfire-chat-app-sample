@@ -27,7 +27,7 @@
     },
     "collection /messages": {
       "document {messageId}": {
-        "sentAt": "2021-06-25T00:00:00",
+        "createdAt": "2021-06-25T00:00:00",
         "isDeleted": false,
         "senderRef": "/users/{userId}",
         "content": "こんにちは！",

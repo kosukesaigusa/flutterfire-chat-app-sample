@@ -1,16 +1,19 @@
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:cloud_functions_app_sample/models/app_user/app_user.dart';
+import 'package:cloud_functions_app_sample/models/chat_room/chat_room.dart';
+import 'package:cloud_functions_app_sample/pages/chat_room/chat_room.dart';
 import 'package:cloud_functions_app_sample/store/store.dart';
 import 'package:cloud_functions_app_sample/theme/theme.dart';
 import 'package:cloud_functions_app_sample/utils/datetime.dart';
-import 'package:cloud_functions_app_sample/utils/snackbar.dart';
+import 'package:cloud_functions_app_sample/widgets/error_widget/error_text_widget.dart';
 import 'package:cloud_functions_app_sample/widgets/image_widget/cached_network_image.dart';
 import 'package:cloud_functions_app_sample/widgets/loading_widget/spinkit_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+final store = Store();
+
 class ChatRoomListPage extends StatelessWidget {
-  final store = Store();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +23,7 @@ class ChatRoomListPage extends StatelessWidget {
         ref: attendingChatRoomsRef(userId: 'EqGWv1sZAMNiVifprM5ku4DNzKu2'),
         builder: (context, snapshot, child) {
           if (snapshot.hasError) {
-            return const Text('Something went wrong!');
+            return ErrorTextWidget();
           }
           if (!snapshot.hasData) {
             return const PrimarySpinkitCircle(size: 48);
@@ -32,8 +35,12 @@ class ChatRoomListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final attendingChatRoom = querySnapshot.docs[index].data;
               return InkWell(
-                onTap: () {
-                  showFloatingSnackBar(context, 'まだ何も起こりません。');
+                onTap: () async {
+                  await Navigator.of(context).push<void>(
+                    ChatRoomPage.route(
+                        args: ChatRoomPageArguments(
+                            chatRoomRef(chatRoomId: querySnapshot.docs[index].id))),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),

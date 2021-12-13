@@ -1,10 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class Store extends ChangeNotifier {
   factory Store() => _instance;
   Store._internal();
   static final Store _instance = Store._internal();
+
+  FirebaseFirestore get db => FirebaseFirestore.instance;
+  FirebaseStorage get storage => FirebaseStorage.instance;
+  String get uuid => const Uuid().v4();
 
   /// 現在開いている BottomNavigationBar のタブ番号
   int tabIndex = 0;

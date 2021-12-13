@@ -34,6 +34,7 @@ class AttendingChatRoom {
     this.imageURL,
     required this.usersCount,
     required this.mute,
+    required this.unreadCount,
   });
 
   @TimestampConverter()
@@ -47,6 +48,8 @@ class AttendingChatRoom {
   final int usersCount;
   @JsonKey(defaultValue: false)
   final bool mute;
+  @JsonKey(defaultValue: 0)
+  final int unreadCount;
 }
 
 @Collection<AppUser>('users')
@@ -57,6 +60,3 @@ AttendingChatRoomCollectionReference attendingChatRoomsRef({required String user
           fromFirestore: AppUserCollectionReference.fromFirestore,
           toFirestore: AppUserCollectionReference.toFirestore,
         ));
-// AttendingChatRoomCollectionReference attendingChatRoomsRef({required String userId}) =>
-//     AttendingChatRoomCollectionReference(
-//         db.collection('users').doc(userId) as DocumentReference<AppUser>);

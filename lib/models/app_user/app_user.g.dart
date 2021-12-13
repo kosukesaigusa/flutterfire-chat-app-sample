@@ -641,6 +641,7 @@ abstract class AttendingChatRoomDocumentReference
     String? imageURL,
     int usersCount,
     bool mute,
+    int unreadCount,
   });
 
   Future<void> set(AttendingChatRoom value);
@@ -695,6 +696,7 @@ class _$AttendingChatRoomDocumentReference
     Object? imageURL = _sentinel,
     Object? usersCount = _sentinel,
     Object? mute = _sentinel,
+    Object? unreadCount = _sentinel,
   }) async {
     final json = {
       if (lastMessage != _sentinel) "lastMessage": lastMessage as String,
@@ -702,6 +704,7 @@ class _$AttendingChatRoomDocumentReference
       if (imageURL != _sentinel) "imageURL": imageURL as String?,
       if (usersCount != _sentinel) "usersCount": usersCount as int,
       if (mute != _sentinel) "mute": mute as bool,
+      if (unreadCount != _sentinel) "unreadCount": unreadCount as int,
     };
 
     return reference.update(json);
@@ -806,6 +809,17 @@ abstract class AttendingChatRoomQuery
     List<bool>? whereIn,
     List<bool>? whereNotIn,
   });
+  AttendingChatRoomQuery whereUnreadCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int>? whereIn,
+    List<int>? whereNotIn,
+  });
 
   AttendingChatRoomQuery orderByLastMessage({
     bool descending = false,
@@ -861,6 +875,18 @@ abstract class AttendingChatRoomQuery
     bool startAfter,
     bool endAt,
     bool endBefore,
+    AttendingChatRoomDocumentSnapshot? startAtDocument,
+    AttendingChatRoomDocumentSnapshot? endAtDocument,
+    AttendingChatRoomDocumentSnapshot? endBeforeDocument,
+    AttendingChatRoomDocumentSnapshot? startAfterDocument,
+  });
+
+  AttendingChatRoomQuery orderByUnreadCount({
+    bool descending = false,
+    int startAt,
+    int startAfter,
+    int endAt,
+    int endBefore,
     AttendingChatRoomDocumentSnapshot? startAtDocument,
     AttendingChatRoomDocumentSnapshot? endAtDocument,
     AttendingChatRoomDocumentSnapshot? endBeforeDocument,
@@ -1056,6 +1082,34 @@ class _$AttendingChatRoomQuery
     return _$AttendingChatRoomQuery(
       reference.where(
         'mute',
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      _collection,
+    );
+  }
+
+  AttendingChatRoomQuery whereUnreadCount({
+    int? isEqualTo,
+    int? isNotEqualTo,
+    int? isLessThan,
+    int? isLessThanOrEqualTo,
+    int? isGreaterThan,
+    int? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<int>? whereIn,
+    List<int>? whereNotIn,
+  }) {
+    return _$AttendingChatRoomQuery(
+      reference.where(
+        'unreadCount',
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1280,6 +1334,48 @@ class _$AttendingChatRoomQuery
     return _$AttendingChatRoomQuery(query, _collection);
   }
 
+  AttendingChatRoomQuery orderByUnreadCount({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    AttendingChatRoomDocumentSnapshot? startAtDocument,
+    AttendingChatRoomDocumentSnapshot? endAtDocument,
+    AttendingChatRoomDocumentSnapshot? endBeforeDocument,
+    AttendingChatRoomDocumentSnapshot? startAfterDocument,
+  }) {
+    var query = reference.orderBy('unreadCount', descending: false);
+
+    if (startAtDocument != null) {
+      query = query.startAtDocument(startAtDocument.snapshot);
+    }
+    if (startAfterDocument != null) {
+      query = query.startAfterDocument(startAfterDocument.snapshot);
+    }
+    if (endAtDocument != null) {
+      query = query.endAtDocument(endAtDocument.snapshot);
+    }
+    if (endBeforeDocument != null) {
+      query = query.endBeforeDocument(endBeforeDocument.snapshot);
+    }
+
+    if (startAt != _sentinel) {
+      query = query.startAt([startAt]);
+    }
+    if (startAfter != _sentinel) {
+      query = query.startAfter([startAfter]);
+    }
+    if (endAt != _sentinel) {
+      query = query.endAt([endAt]);
+    }
+    if (endBefore != _sentinel) {
+      query = query.endBefore([endBefore]);
+    }
+
+    return _$AttendingChatRoomQuery(query, _collection);
+  }
+
   @override
   bool operator ==(Object other) {
     return other is _$AttendingChatRoomQuery &&
@@ -1354,6 +1450,7 @@ AttendingChatRoom _$AttendingChatRoomFromJson(Map<String, dynamic> json) =>
       imageURL: json['imageURL'] as String?,
       usersCount: json['usersCount'] as int? ?? 0,
       mute: json['mute'] as bool? ?? false,
+      unreadCount: json['unreadCount'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$AttendingChatRoomToJson(AttendingChatRoom instance) =>
@@ -1366,4 +1463,5 @@ Map<String, dynamic> _$AttendingChatRoomToJson(AttendingChatRoom instance) =>
       'imageURL': instance.imageURL,
       'usersCount': instance.usersCount,
       'mute': instance.mute,
+      'unreadCount': instance.unreadCount,
     };

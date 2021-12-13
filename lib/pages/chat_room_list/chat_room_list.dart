@@ -66,7 +66,9 @@ class ChatRoomListPage extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const Gap(4),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Text(
@@ -77,6 +79,26 @@ class ChatRoomListPage extends StatelessWidget {
                                   ),
                                 ),
                                 const Gap(48),
+                                attendingChatRoom.unreadCount > 0
+                                    ? SizedBox(
+                                        child: Container(
+                                          height: 24,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 8),
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context).colorScheme.primary,
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                                attendingChatRoom.unreadCount < 100
+                                                    ? '${attendingChatRoom.unreadCount}'
+                                                    : '99+',
+                                                style: white10),
+                                          ),
+                                        ),
+                                      )
+                                    : const SizedBox(width: 40, height: 24),
                               ],
                             ),
                           ],

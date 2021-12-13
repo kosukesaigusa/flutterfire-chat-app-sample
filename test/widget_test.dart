@@ -1,4 +1,4 @@
-import 'package:cloud_functions_app_sample/main.dart';
+import 'package:cloud_functions_app_sample/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

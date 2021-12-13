@@ -53,10 +53,18 @@ class ChatRoomListPage extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    '${attendingChatRoom.name}',
-                                    style: bold16,
-                                    overflow: TextOverflow.ellipsis,
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          '${attendingChatRoom.name}',
+                                          style: bold16,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      const Gap(4),
+                                      Text('(${attendingChatRoom.usersCount})', style: regular12),
+                                    ],
                                   ),
                                 ),
                                 const Gap(16),
@@ -80,25 +88,26 @@ class ChatRoomListPage extends StatelessWidget {
                                 ),
                                 const Gap(48),
                                 attendingChatRoom.unreadCount > 0
-                                    ? SizedBox(
-                                        child: Container(
-                                          height: 24,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 4, horizontal: 8),
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context).colorScheme.primary,
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                                attendingChatRoom.unreadCount < 100
-                                                    ? '${attendingChatRoom.unreadCount}'
-                                                    : '99+',
-                                                style: white10),
+                                    ? Container(
+                                        height: 24,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 4,
+                                          horizontal: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).colorScheme.primary,
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            attendingChatRoom.unreadCount < 100
+                                                ? '${attendingChatRoom.unreadCount}'
+                                                : '99+',
+                                            style: white10,
                                           ),
                                         ),
                                       )
-                                    : const SizedBox(width: 40, height: 24),
+                                    : const SizedBox(height: 24),
                               ],
                             ),
                           ],

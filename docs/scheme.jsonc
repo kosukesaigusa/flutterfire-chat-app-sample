@@ -5,6 +5,17 @@
       "updatedAt": "2021-06-25T00:00:00",
       "name": "大谷翔平",
       "imageURL": "https://..."
+    },
+    "collection /attendingChatRooms": {
+      "document {attendingChatRoomId}": {
+        "updatedAt": "2021-06-25T00:00:00",
+        "chatRoomRef": "/chatRooms/{chatRoomId}",
+        "lastMessage": "こんにちは！",
+        "name": "雑談部屋",
+        "imageURL": "https://...",
+        "usersCount": 5,
+        "mute": false
+      }
     }
   },
   "collection /chatRooms": {
@@ -22,15 +33,6 @@
         "content": "こんにちは！",
         "imageURLs": ["https://...", "https://...", "https://..."]
       }
-    }
-  },
-  "collection /attendingChatRooms": {
-    "document {attendingChatRoomId}": {
-      "createdAt": "2021-06-25T00:00:00",
-      "updatedAt": "2021-06-25T00:00:00",
-      "lastMessage": "こんにちは！",
-      "roomName": "雑談部屋",
-      "mute": false
     }
   }
 }

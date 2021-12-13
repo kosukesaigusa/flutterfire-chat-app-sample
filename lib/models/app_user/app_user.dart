@@ -49,8 +49,6 @@ class AttendingChatRoom {
   final bool mute;
 }
 
-// @Collection<AppUser>('users')
-
 @Collection<AppUser>('users')
 @Collection<AttendingChatRoom>('users/*/attendingChatRooms', name: 'attendingChatRooms')
 final usersRef = AppUserCollectionReference();
@@ -59,3 +57,6 @@ AttendingChatRoomCollectionReference attendingChatRoomsRef({required String user
           fromFirestore: AppUserCollectionReference.fromFirestore,
           toFirestore: AppUserCollectionReference.toFirestore,
         ));
+// AttendingChatRoomCollectionReference attendingChatRoomsRef({required String userId}) =>
+//     AttendingChatRoomCollectionReference(
+//         db.collection('users').doc(userId) as DocumentReference<AppUser>);

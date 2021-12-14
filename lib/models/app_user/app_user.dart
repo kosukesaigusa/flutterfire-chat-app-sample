@@ -53,5 +53,7 @@ class AttendingChatRoom {
 @Collection<AppUser>('users')
 @Collection<AttendingChatRoom>('users/*/attendingChatRooms', name: 'attendingChatRooms')
 final usersRef = AppUserCollectionReference();
+AppUserDocumentReference userRef({required String userId}) =>
+    AppUserDocumentReference(usersRef.doc(userId).reference);
 AttendingChatRoomCollectionReference attendingChatRoomsRef({required String userId}) =>
     AttendingChatRoomCollectionReference(usersRef.doc(userId).reference);

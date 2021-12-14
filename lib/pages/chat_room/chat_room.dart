@@ -6,6 +6,7 @@ import 'package:cloud_functions_app_sample/routes/route.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/error_text_widget.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/not_found_widget.dart';
 import 'package:cloud_functions_app_sample/widgets/loading_widget/spinkit_circle.dart';
+import 'package:cloud_functions_app_sample/widgets/tap_to_unfocus_page.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomPageArguments {
@@ -27,38 +28,35 @@ class ChatRoomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments! as ChatRoomPageArguments;
-    return FirestoreBuilder<ChatRoomDocumentSnapshot>(
-      ref: args.chatRoomRef,
-      builder: (context, snapshot, child) {
-        if (snapshot.hasError) {
-          return ErrorTextWidgetPage();
-        }
-        if (!snapshot.hasData) {
-          return const PrimarySpinkitCircle(size: 48);
-        }
-        final chatRoom = snapshot.data?.data;
-        if (chatRoom == null) {
-          return NotFoundWidgetPage();
-        }
-        return Scaffold(
-          appBar: AppBar(title: Text(chatRoom.name), centerTitle: false),
-          body: FirestoreBuilder<MessageQuerySnapshot>(
-            ref: messagesRef(chatRoomId: args.chatRoomRef.id),
-            builder: (context, snapshot, child) {
-              if (snapshot.hasError) {
-                return ErrorTextWidget();
-              }
-              if (!snapshot.hasData) {
-                return const PrimarySpinkitCircle(size: 48);
-              }
-              final querySnapshot = snapshot.requireData;
-              return Column(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                      },
+    return TapToUnfocusPage(
+      child: FirestoreBuilder<ChatRoomDocumentSnapshot>(
+        ref: args.chatRoomRef,
+        builder: (context, snapshot, child) {
+          if (snapshot.hasError) {
+            return ErrorTextWidgetPage();
+          }
+          if (!snapshot.hasData) {
+            return const PrimarySpinkitCircle(size: 48);
+          }
+          final chatRoom = snapshot.data?.data;
+          if (chatRoom == null) {
+            return NotFoundWidgetPage();
+          }
+          return Scaffold(
+            appBar: AppBar(title: Text(chatRoom.name), centerTitle: false),
+            body: FirestoreBuilder<MessageQuerySnapshot>(
+              ref: messagesRef(chatRoomId: args.chatRoomRef.id),
+              builder: (context, snapshot, child) {
+                if (snapshot.hasError) {
+                  return ErrorTextWidget();
+                }
+                if (!snapshot.hasData) {
+                  return const PrimarySpinkitCircle(size: 48);
+                }
+                final querySnapshot = snapshot.requireData;
+                return Column(
+                  children: [
+                    Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: ListView.builder(
@@ -71,14 +69,14 @@ class ChatRoomPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  ChatInputWidget(),
-                ],
-              );
-            },
-          ),
-        );
-      },
+                    ChatInputWidget(chatRoomId: args.chatRoomRef.id),
+                  ],
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

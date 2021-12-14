@@ -20,7 +20,8 @@ class ChatRoomListPage extends StatelessWidget {
       appBar: AppBar(title: const Text('Chats'), centerTitle: false),
       body: FirestoreBuilder<AttendingChatRoomQuerySnapshot>(
         // ref: attendingChatRoomsRef(store.nonNullUid),
-        ref: attendingChatRoomsRef(userId: 'EqGWv1sZAMNiVifprM5ku4DNzKu2'),
+        // ref: attendingChatRoomsRef(userId: 'EqGWv1sZAMNiVifprM5ku4DNzKu2'),
+        ref: attendingChatRoomsRef(userId: 'FkD3HqBheNTRc7ZIFSt6Vqm16lUJ'),
         builder: (context, snapshot, child) {
           if (snapshot.hasError) {
             return ErrorTextWidget();

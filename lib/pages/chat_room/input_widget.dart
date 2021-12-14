@@ -64,7 +64,7 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                       minLines: 1,
                       maxLines: 5,
                       decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,

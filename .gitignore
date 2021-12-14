@@ -52,6 +52,7 @@ app.*.map.json
 ios/build/Pods.build/Release-iphonesimulator/
 **/ios/Flutter/DartDefines.xcconfig
 **/ios/Runner/GoogleService-Info.plist
+**/ios/Flutter/DartDefines.xcconfig
 
 # Android related
 **/android/app/src/main/res/mipmap*/

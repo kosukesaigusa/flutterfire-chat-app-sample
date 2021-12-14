@@ -43,10 +43,23 @@ class Message {
   final String content;
 }
 
+@JsonSerializable()
+class AttendingUser {
+  AttendingUser({required this.userRef, required this.mute});
+
+  @JsonKey(defaultValue: false)
+  bool? mute;
+  @DocumentReferenceConverter()
+  final DocumentReference userRef;
+}
+
 @Collection<ChatRoom>('chatRooms')
 @Collection<Message>('chatRooms/*/messages', name: 'messages')
+@Collection<AttendingUser>('chatRooms/*/attendingUsers', name: 'attendingUsers')
 final chatRoomsRef = ChatRoomCollectionReference();
 ChatRoomDocumentReference chatRoomRef({required String chatRoomId}) =>
     ChatRoomDocumentReference(chatRoomsRef.doc(chatRoomId).reference);
 MessageCollectionReference messagesRef({required String chatRoomId}) =>
     MessageCollectionReference(chatRoomRef(chatRoomId: chatRoomId).reference);
+AttendingUserCollectionReference attendingUsersRef({required String chatRoomId}) =>
+    AttendingUserCollectionReference(chatRoomRef(chatRoomId: chatRoomId).reference);

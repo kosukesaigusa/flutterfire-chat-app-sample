@@ -14,7 +14,8 @@
         "name": "雑談部屋",
         "imageURL": "https://...",
         "usersCount": 5,
-        "mute": false
+        "mute": false,
+        "unreadCount": 5
       }
     }
   },
@@ -33,6 +34,12 @@
         "senderRef": "/users/{userId}",
         "content": "こんにちは！",
         "imageURLs": ["https://...", "https://...", "https://..."]
+      }
+    },
+    "collection /attendingUsers": {
+      "document {userId}": {
+        "userRef": "/users/{userId}",
+        "mute": false
       }
     }
   }

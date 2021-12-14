@@ -101,4 +101,9 @@ class Store extends ChangeNotifier {
       }
     }
   }
+
+  /// サインアウトする
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

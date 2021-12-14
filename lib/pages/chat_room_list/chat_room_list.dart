@@ -2,6 +2,7 @@ import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:cloud_functions_app_sample/models/app_user/app_user.dart';
 import 'package:cloud_functions_app_sample/models/chat_room/chat_room.dart';
 import 'package:cloud_functions_app_sample/pages/chat_room/chat_room.dart';
+import 'package:cloud_functions_app_sample/routes/route.dart';
 import 'package:cloud_functions_app_sample/store/store.dart';
 import 'package:cloud_functions_app_sample/theme/theme.dart';
 import 'package:cloud_functions_app_sample/utils/datetime.dart';
@@ -19,7 +20,22 @@ class ChatRoomListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SignInRequiredPage(
       child: Scaffold(
-        appBar: AppBar(title: const Text('Chats'), centerTitle: false),
+        appBar: AppBar(
+          title: const Text('Chats'),
+          centerTitle: false,
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await store.signOut();
+                await Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteName.signIn.name,
+                  (route) => false,
+                );
+              },
+              icon: const Icon(Icons.exit_to_app),
+            ),
+          ],
+        ),
         body: FirestoreBuilder<AttendingChatRoomQuerySnapshot>(
           ref: attendingChatRoomsRef(userId: store.nonNullUid),
           builder: (context, snapshot, child) {

@@ -10,10 +10,6 @@
     "strict": true,
     "target": "es2020",
     "baseUrl": "./",
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
-    },
     "types": ["@types/node"]
   },
   "compileOnSave": true,

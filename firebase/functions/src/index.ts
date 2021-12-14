@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin'
-import * as serviceAccountKey from '~/keys/dev_service_account_key.json'
-import { onCreateMessage } from '~/src/message/onCreateMessage'
+import { onCreateMessage } from './message/onCreateMessage'
+import * as serviceAccountKey from './keys/dev_service_account_key.json'
 
 /** Service Account Key 関連の値をファイルを取得 */
 const serviceAccount = {
@@ -15,7 +15,6 @@ const serviceAccount = {
     authProviderX509CertUrl: serviceAccountKey.auth_provider_x509_cert_url,
     clientC509CertUrl: serviceAccountKey.client_x509_cert_url,
 }
-
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

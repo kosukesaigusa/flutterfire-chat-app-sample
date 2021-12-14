@@ -72,7 +72,6 @@ class _ChatInputWidgetState extends State<ChatInputWidget> {
                         disabledBorder: InputBorder.none,
                         hintText: 'メッセージを入力',
                       ),
-                      // onChanged: (text) {// SharedPreferences に下書きを保存する },
                     ),
                   ),
                 ],

@@ -253,4 +253,4 @@ Future<void> setUpLocalEmulator() async {
 
 ## Firebase Local Emulator Suite で iOS Simulator の Flutter アプリを動かす
 
-デモ的にいろいろなコードを見てみましょう！
+デモ的にいろいろなコードを見てみましょう！！

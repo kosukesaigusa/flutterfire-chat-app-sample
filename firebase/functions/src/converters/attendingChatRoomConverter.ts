@@ -1,3 +1,5 @@
+import { FieldValue } from '@google-cloud/firestore'
+
 export const attendingChatRoomConverter = {
     fromFirestore(qds: FirebaseFirestore.QueryDocumentSnapshot): AttendingChatRoom {
         const data = qds.data()
@@ -14,7 +16,7 @@ export const attendingChatRoomConverter = {
     },
     toFirestore(obj: AttendingChatRoom): FirebaseFirestore.DocumentData {
         return {
-            updatedAt: FirebaseFirestore.FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
             lastMessage: obj.lastMessage,
             name: obj.name,
             imageURL: obj.imageURL,

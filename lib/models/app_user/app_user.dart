@@ -57,3 +57,7 @@ AppUserDocumentReference userRef({required String userId}) =>
     AppUserDocumentReference(usersRef.doc(userId).reference);
 AttendingChatRoomCollectionReference attendingChatRoomsRef({required String userId}) =>
     AttendingChatRoomCollectionReference(usersRef.doc(userId).reference);
+AttendingChatRoomDocumentReference attendingChatRoomRef(
+        {required String userId, required String chatRoomId}) =>
+    AttendingChatRoomDocumentReference(
+        attendingChatRoomsRef(userId: userId).doc(chatRoomId).reference);

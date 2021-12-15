@@ -1,7 +1,9 @@
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
+import 'package:cloud_functions_app_sample/models/app_user/app_user.dart';
 import 'package:cloud_functions_app_sample/models/chat_room/chat_room.dart';
 import 'package:cloud_functions_app_sample/pages/chat_room/input_widget.dart';
 import 'package:cloud_functions_app_sample/pages/chat_room/message.dart';
+import 'package:cloud_functions_app_sample/repository/attending_chat_room/attending_chat_room.dart';
 import 'package:cloud_functions_app_sample/routes/route.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/error_text_widget.dart';
 import 'package:cloud_functions_app_sample/widgets/error_widget/not_found_widget.dart';
@@ -53,6 +55,9 @@ class ChatRoomPage extends StatelessWidget {
                 if (!snapshot.hasData) {
                   return const PrimarySpinkitCircle(size: 48);
                 }
+                // ignore: unawaited_futures
+                resetUnreadCount(attendingChatRoomRef(
+                    userId: store.nonNullUid, chatRoomId: args.chatRoomRef.id));
                 final querySnapshot = snapshot.requireData;
                 return Column(
                   children: [

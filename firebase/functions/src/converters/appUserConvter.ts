@@ -1,3 +1,5 @@
+import { FieldValue } from '@google-cloud/firestore'
+
 export const appUserConverter = {
     fromFirestore(qds: FirebaseFirestore.QueryDocumentSnapshot): AppUser {
         const data = qds.data()
@@ -11,8 +13,8 @@ export const appUserConverter = {
     },
     toFirestore(obj: AppUser): FirebaseFirestore.DocumentData {
         return {
-            createdAt: FirebaseFirestore.FieldValue.serverTimestamp(),
-            updatedAt: FirebaseFirestore.FieldValue.serverTimestamp(),
+            createdAt: FieldValue.serverTimestamp(),
+            updatedAt: FieldValue.serverTimestamp(),
             name: obj.name,
             imageURL: obj.imageURL,
         }

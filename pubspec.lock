@@ -161,35 +161,35 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
+    version: "3.1.5"
   cloud_firestore_odm:
     dependency: "direct main"
     description:
       name: cloud_firestore_odm
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-dev.4"
+    version: "1.0.0-dev.5"
   cloud_firestore_odm_generator:
     dependency: "direct dev"
     description:
       name: cloud_firestore_odm_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0-dev.4"
+    version: "1.0.0-dev.5"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.9"
+    version: "5.4.10"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.4"
+    version: "2.6.5"
   cloud_functions:
     dependency: "direct main"
     description:
@@ -406,14 +406,14 @@ packages:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.2"
+    version: "4.2.3"
   firebase_core_web:
     dependency: transitive
     description:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.2"
+    version: "1.5.3"
   firebase_messaging:
     dependency: "direct main"
     description:
